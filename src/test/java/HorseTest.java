@@ -42,7 +42,7 @@ class HorseTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\n", "\t", "\r", "\f"})
-    void testConstructor_ShouldExceptionMessage_WhenArgsNameIsBlank() {
+    void testConstructor_ShouldExceptionMessage_WhenArgsNameIsBlank(String name) {
         String expected = "Name cannot be blank.";
 
         var exception = assertThrows(IllegalArgumentException.class, () -> new Horse(name, speed));
