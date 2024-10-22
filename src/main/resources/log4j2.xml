@@ -3,16 +3,17 @@
     <Appenders>
         <RollingFile name="RollingFile"
                      fileName="logs/hippodrome.log"
-                     filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log">
+                     filePattern="logs/hippodrome.%d{yyyy-MM-dd-mm}.log"
+                     ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd} %p %c{1.} [%t] %m%n</Pattern>
+                <Pattern>%d %p %c: %m%n</Pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
             </Policies>
             <DefaultRolloverStrategy>
-                <Delete>
-                    <IfFileName>logs/hippodrome.%d{yyyy-MM-dd}.log</IfFileName>
+                <Delete basePath="logs" maxDepth="2">
+                    <IfFileName>hippodrome.*.log</IfFileName>
                     <IfLastModified>age="7D"/></IfLastModified>
                 </Delete>
             </DefaultRolloverStrategy>
@@ -20,7 +21,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="error">
+        <Root level="all">
             <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
