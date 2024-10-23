@@ -1,26 +1,27 @@
 Configuration:
-  status: warn
+  status: debug
 
   appenders:
-
     RollingFile:
       - name: LogToRollingFile
-        fileName: logs/hippodrome.log
-        filePattern: "logs/hippodrome-%d{yyyy-MM-dd-mm--ss}-%i.log"
+        fileName: "logs/hippodrome.log"
+        filePattern: "logs/hippodrome-%d{yyyy-MM-dd-mm}-%i.log"
         #        datePattern: "yyyy-MM-dd-mm"
         append: true
         PatternLayout:
           pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-6level%c{1}: %msg%n"
         Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+            modulate: false
           SizeBasedTriggeringPolicy:
-            size: 10MB
-        DefaultRollOverStrategy:
-          max: 10
+            size: "10MB"
+
 
   Loggers:
     logger:
       - name: hippodrome
-        level: error
+        level: all
         additivity: false
         AppenderRef:
           ref: LogToRollingFile
