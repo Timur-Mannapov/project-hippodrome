@@ -25,7 +25,7 @@
         <immediateFlush>true</immediateFlush>
     </appender>
 
-    <root level="all">
+    <root level="debug">
         <appender-ref ref="console" />
         <appender-ref ref="ROLLING"/>
     </root>
