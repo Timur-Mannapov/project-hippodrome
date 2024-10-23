@@ -1,0 +1,38 @@
+{
+  "Configuration": {
+    "status": "DEBUG",
+    "name": "MyApp",
+    "Appenders": {
+      "RollingFile": {
+        "name": "RollingFile",
+        "fileName": "logs/hippodrome.log",
+        "filePattern": "logs/hippodrome.%d{yyyy-MM-dd-mm}.log",
+        "ignoreExceptions": false,
+        "PatternLayout": {
+          "Pattern": "%d %p %c: %m%n"
+        },
+        "Policies": {
+          "TimeBasedTriggeringPolicy": {}
+        },
+        "DefaultRolloverStrategy": {
+          "Delete": {
+            "basePath": "logs",
+            "maxDepth": 2,
+            "IfFileName": "hippodrome.*.log",
+            "IfLastModified": {
+              "age": "7D"
+            }
+          }
+        }
+      }
+    },
+    "Loggers": {
+      "Root": {
+        "level": "all",
+        "AppenderRef": {
+          "ref": "RollingFile"
+        }
+      }
+    }
+  }
+}
